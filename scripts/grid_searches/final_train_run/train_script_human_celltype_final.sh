@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ORGANISM="HUMAN"
+MODEL_CLASS="CELLTYPE"
+GS_KEYS=("210509_LINEAR_0.0.1_0.1_CV" "210509_MARKER_0.0.1_0.1_CV" "210509_MLP_0.1.1_0.1_CV+210509_MLP_0.1.2_0.1_CV+210509_MLP_0.1.3_0.1_CV")
+
+MEMORY="80G"
+
+source  "$(dirname "$0")/base_train_script.sh"
