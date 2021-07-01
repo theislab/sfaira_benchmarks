@@ -7,7 +7,7 @@ import warnings
 
 import sfaira
 from sfaira.consts import AdataIdsSfaira
-from sfaira.data import clean_string
+from sfaira.consts.utils import clean_id_str
 
 
 print(tf.__version__)
@@ -31,10 +31,10 @@ version = "0.1"
 gs_id = "0"
 
 model_id = model_class + "_" + \
-           clean_string(organism) + "-" + clean_string(organ) + "-" + model_type + "-" + topology + "-" + version + \
+           clean_id_str(organism) + "-" + clean_id_str(organ) + "-" + model_type + "-" + topology + "-" + version + \
            "_" + organisation
 fn_out = base_path + "/results/" + model_id + "_" + gs_id
-config_fn = os.path.join(config_path, f"config_{clean_string(organism)}_{clean_string(organ)}.pickle")
+config_fn = os.path.join(config_path, f"config_{clean_id_str(organism)}_{clean_id_str(organ)}.pickle")
 
 # Train project:
 np.random.seed(1)

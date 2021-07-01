@@ -5,7 +5,7 @@ import tensorflow as tf
 import time
 
 import sfaira
-from sfaira.data import clean_string
+from sfaira.consts.utils import clean_id_str
 from sfaira.estimators.callbacks import WarmUpTraining
 
 from sfaira_benchmarks import HyperparameterContainer
@@ -44,7 +44,7 @@ if model_class.lower() == "celltype":
         if model_type.lower() == "linear":
             model_type = "mlp"
 model_id = model_class + "_" + \
-           clean_string(organism) + "-" + clean_string(organ) + "-" + model_type + "-" + topology + "-" + version + \
+           clean_id_str(organism) + "-" + clean_id_str(organ) + "-" + model_type + "-" + topology + "-" + version + \
            "_" + organisation
 for learning_rate_key in learning_rate_keys.split("+"):
     gs_id = depth_key + "_" + width_key + "_" + learning_rate_key + "_" + dropout_key + "_" + l1_key + "_" + l2_key
@@ -58,8 +58,8 @@ for learning_rate_key in learning_rate_keys.split("+"):
 
     fn_tensorboard = base_path + "/logs/" + model_id + "_" + gs_id
     fn_out = base_path + "/results/" + model_id + "_" + gs_id
-    config_fn = os.path.join(config_path, f"config_{clean_string(organism)}_{clean_string(organ)}.pickle")
-    fn_target_universe = os.path.join(target_path, f"targets_{clean_string(organism)}_{clean_string(organ)}.csv")
+    config_fn = os.path.join(config_path, f"config_{clean_id_str(organism)}_{clean_id_str(organ)}.pickle")
+    fn_target_universe = os.path.join(target_path, f"targets_{clean_id_str(organism)}_{clean_id_str(organ)}.csv")
 
     # Train project:
     # Assemble hyperparameter that mask topology version presets:

@@ -2,10 +2,9 @@ import numpy as np
 import os
 import sys
 import json
-import tensorflow as tf
 
 import sfaira
-from sfaira.data import clean_string
+from sfaira.consts.utils import clean_id_str
 from sfaira.estimators.callbacks import WarmUpTraining
 
 # Set global variables.
@@ -39,7 +38,7 @@ if model_class.lower() == "celltype":
         if model_type.lower() == "linear":
             model_type = "mlp"
 model_id = model_class + "_" + \
-           clean_string(organism) + "-" + clean_string(organ) + "-" + model_type + "-" + topology + "-" + version + \
+           clean_id_str(organism) + "-" + clean_id_str(organ) + "-" + model_type + "-" + topology + "-" + version + \
            "_" + organisation
 
 if model_type[:3] == 'vae':
@@ -49,8 +48,8 @@ else:
 
 fn_tensorboard = os.path.join(base_path, "logs", best_param_file[:-4])
 fn_out = os.path.join(base_path, "results", best_param_file[:-4])
-config_fn = os.path.join(config_path, f"config_{clean_string(organism)}_{clean_string(organ)}.pickle")
-fn_target_universe = os.path.join(target_path, f"targets_{clean_string(organism)}_{clean_string(organ)}.csv")
+config_fn = os.path.join(config_path, f"config_{clean_id_str(organism)}_{clean_id_str(organ)}.pickle")
+fn_target_universe = os.path.join(target_path, f"targets_{clean_id_str(organism)}_{clean_id_str(organ)}.csv")
 
 # Train project:
 # Assemble hyperparameter that mask topology version presets:
